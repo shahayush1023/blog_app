@@ -1,19 +1,25 @@
-export default function Post(){
+import {formatISO9075} from "date-fns";
+import { Link } from "react-router-dom";
+export default function Post({title,summary,cover,content,createdAt,author}){
     return (
         <div className="entry">
         <div className="image">
+          <Link to ={'/post/id'} >
           <img
-            src="https://static.toiimg.com/photo/msid-69955935/69955935.jpg"
-            alt="ms dhoni"
+            src={'http://localhost:4000/'+cover}
+            alt=""
           />
+          </Link>
         </div>
         <div className="texts">
-          <h2>A captain who won all icc trophies💪</h2>
+          <Link>
+          <h2>{title}</h2>
+          </Link>
           <p className="info">
-            <a className="author">AYUSH SHAH</a>
-            <time>2023-10-01 16:30</time>
+            <a className="author">{author.username}</a>
+            <time>{formatISO9075(new Date(createdAt))}</time>
           </p>
-          <p className="summary">kvwer ervwe woeoowe oweowegoweooglwegwejg we wej w</p>
+          <p className="summary">{summary}</p>
         </div>
       </div>
     );
